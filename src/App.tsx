@@ -73,45 +73,11 @@ const FloatingParticles = () => {
 // Enhanced animated background grid
 const AnimatedGrid = () => {
   return (
-    <div className="fixed inset-0 pointer-events-none opacity-30">
-      <svg width="100%" height="100%">
-        <defs>
-          {/* Subtle dot pattern */}
-          <pattern id="dots" width="80" height="80" patternUnits="userSpaceOnUse">
-            <circle cx="40" cy="40" r="1.5" fill="#4f46e5" opacity="0.3">
-              <animate attributeName="opacity" values="0.1;0.5;0.1" dur="4s" repeatCount="indefinite" />
-            </circle>
-            <circle cx="20" cy="20" r="1" fill="#22c55e" opacity="0.2">
-              <animate attributeName="opacity" values="0.05;0.3;0.05" dur="6s" repeatCount="indefinite" />
-            </circle>
-            <circle cx="60" cy="20" r="0.8" fill="#3b82f6" opacity="0.25">
-              <animate attributeName="opacity" values="0.1;0.4;0.1" dur="5s" repeatCount="indefinite" />
-            </circle>
-          </pattern>
-          
-          {/* Flowing lines pattern */}
-          <pattern id="lines" width="200" height="200" patternUnits="userSpaceOnUse">
-            <path d="M0,100 Q50,50 100,100 T200,100" stroke="#4f46e5" strokeWidth="0.5" fill="none" opacity="0.1">
-              <animate attributeName="opacity" values="0.05;0.2;0.05" dur="8s" repeatCount="indefinite" />
-            </path>
-            <path d="M0,150 Q50,100 100,150 T200,150" stroke="#22c55e" strokeWidth="0.3" fill="none" opacity="0.08">
-              <animate attributeName="opacity" values="0.03;0.15;0.03" dur="10s" repeatCount="indefinite" />
-            </path>
-          </pattern>
-          
-          {/* Radial gradient overlay */}
-          <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.05" />
-            <stop offset="50%" stopColor="#22c55e" stopOpacity="0.02" />
-            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        
-        {/* Apply patterns */}
-        <rect width="100%" height="100%" fill="url(#dots)" />
-        <rect width="100%" height="100%" fill="url(#lines)" />
-        <rect width="100%" height="100%" fill="url(#centerGlow)" />
-      </svg>
+    <div className="fixed inset-0 pointer-events-none opacity-20">
+      {/* Subtle animated orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-indigo-500/10 to-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-r from-green-500/8 to-emerald-500/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-purple-500/6 to-pink-500/6 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
     </div>
   );
 };
@@ -175,7 +141,13 @@ function App() {
       <div className="fixed inset-0 organic-bg pointer-events-none" />
       
       <FloatingParticles />
-      <AnimatedGrid />
+      {/* Subtle background orbs instead of grid */}
+      <div className="fixed inset-0 pointer-events-none opacity-15">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-indigo-500/8 to-blue-500/8 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-green-500/6 to-emerald-500/6 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '6s' }}></div>
+        <div className="absolute top-1/3 right-1/3 w-56 h-56 bg-gradient-to-r from-blue-500/7 to-cyan-500/7 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '9s' }}></div>
+      </div>
       <ScrollIndicator />
       
       {/* Enhanced cursor follower */}
