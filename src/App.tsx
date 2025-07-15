@@ -73,18 +73,44 @@ const FloatingParticles = () => {
 // Enhanced animated background grid
 const AnimatedGrid = () => {
   return (
-    <div className="fixed inset-0 pointer-events-none opacity-5">
+    <div className="fixed inset-0 pointer-events-none opacity-30">
       <svg width="100%" height="100%">
         <defs>
-          <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#4f46e5" strokeWidth="1"/>
+          {/* Subtle dot pattern */}
+          <pattern id="dots" width="80" height="80" patternUnits="userSpaceOnUse">
+            <circle cx="40" cy="40" r="1.5" fill="#4f46e5" opacity="0.3">
+              <animate attributeName="opacity" values="0.1;0.5;0.1" dur="4s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="20" cy="20" r="1" fill="#22c55e" opacity="0.2">
+              <animate attributeName="opacity" values="0.05;0.3;0.05" dur="6s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="60" cy="20" r="0.8" fill="#3b82f6" opacity="0.25">
+              <animate attributeName="opacity" values="0.1;0.4;0.1" dur="5s" repeatCount="indefinite" />
+            </circle>
           </pattern>
-          <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
-            <circle cx="20" cy="20" r="1" fill="#22c55e"/>
+          
+          {/* Flowing lines pattern */}
+          <pattern id="lines" width="200" height="200" patternUnits="userSpaceOnUse">
+            <path d="M0,100 Q50,50 100,100 T200,100" stroke="#4f46e5" strokeWidth="0.5" fill="none" opacity="0.1">
+              <animate attributeName="opacity" values="0.05;0.2;0.05" dur="8s" repeatCount="indefinite" />
+            </path>
+            <path d="M0,150 Q50,100 100,150 T200,150" stroke="#22c55e" strokeWidth="0.3" fill="none" opacity="0.08">
+              <animate attributeName="opacity" values="0.03;0.15;0.03" dur="10s" repeatCount="indefinite" />
+            </path>
           </pattern>
+          
+          {/* Radial gradient overlay */}
+          <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.05" />
+            <stop offset="50%" stopColor="#22c55e" stopOpacity="0.02" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </radialGradient>
         </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" />
+        
+        {/* Apply patterns */}
         <rect width="100%" height="100%" fill="url(#dots)" />
+        <rect width="100%" height="100%" fill="url(#lines)" />
+        <rect width="100%" height="100%" fill="url(#centerGlow)" />
       </svg>
     </div>
   );
@@ -145,6 +171,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-main-gradient relative overflow-x-hidden">
+      {/* Organic flowing background overlay */}
+      <div className="fixed inset-0 organic-bg pointer-events-none" />
+      
       <FloatingParticles />
       <AnimatedGrid />
       <ScrollIndicator />
